@@ -21,6 +21,15 @@
         </div>
     </div>
     {{! -- fin fila 2}}
+    <div class="col-5 text-end">
+        <form class="form-inline" action="/admin/novedades" method="get">
+            <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" name="q" 
+            {{#if q}}value="{{q}}" {{/if}}>
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </form>
+    </div>
     {{! -- fila 3}}
     <div class="row">
         <div class="col">
@@ -40,13 +49,20 @@
                         <td>{{titulo}}</td>
                         <td>{{{imagen}}}</td>
                         <td class="text-right">
-                            <a href="/admin/novedades/modificar/{{id}}" class="btn btn-secondary"><i class="fas fa-pencil-alt"></i> </a>
-                            <a href="/admin/novedades/eliminar/{{id}}" class="btn btn-secondary"><i class="fas fa-trash"></i></a>
+                            <a href="/admin/novedades/modificar/{{id}}" class="btn btn-secondary"><i
+                                    class="fas fa-pencil-alt"></i> </a>
+                            <a href="/admin/novedades/eliminar/{{id}}" class="btn btn-secondary"><i
+                                    class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     {{/each}}
                 </tbody>
-            </table>
+            </table> 
+            {{#if is_search}}
+            {{#unless novedades.length}}
+                No se encontraron resultados para "<b>{{q}}</b>"
+            {{/unless}}
+            {{/if}}
         </div>
     </div>
 </div> {{!-- fin contenedor --}}
